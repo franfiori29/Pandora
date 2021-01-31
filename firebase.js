@@ -2,13 +2,22 @@ import * as firebase from "firebase";
 import "firebase/auth";
 import "firebase/storage";
 
+import {
+	FIREBASE_API_KEY,
+	FIREBASE_AUTH_DOMAIN,
+	FIREBASE_PROJECT_ID,
+	FIREBASE_STORAGE_BUCKET,
+	FIREBASE_MESSAGING_SENDER_ID,
+	FIREBASE_APP_ID,
+} from "./env.js";
+
 const firebaseConfig = {
-	apiKey: "AIzaSyCS3JarffdIZ-rJW3qRE8Mc3-zMkCtglm8",
-	authDomain: "signal-clone-build-95afe.firebaseapp.com",
-	projectId: "signal-clone-build-95afe",
-	storageBucket: "signal-clone-build-95afe.appspot.com",
-	messagingSenderId: "800113029844",
-	appId: "1:800113029844:web:3504201c0f29e418764141",
+	apiKey: FIREBASE_API_KEY,
+	authDomain: FIREBASE_AUTH_DOMAIN,
+	projectId: FIREBASE_PROJECT_ID,
+	storageBucket: FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+	appId: FIREBASE_APP_ID,
 };
 
 let app;
