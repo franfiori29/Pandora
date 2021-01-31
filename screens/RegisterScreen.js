@@ -3,6 +3,7 @@ import { StyleSheet, View, KeyboardAvoidingView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Button, Input, Text } from "react-native-elements";
 import { auth } from "../firebase";
+import { PRIMARY_COLOR } from "../constants";
 
 const RegisterScreen = ({ navigation }) => {
 	const [name, setName] = useState("");
@@ -69,6 +70,7 @@ const RegisterScreen = ({ navigation }) => {
 				containerStyle={styles.button}
 				title='Register'
 				onPress={register}
+				buttonStyle={{ backgroundColor: PRIMARY_COLOR }}
 			/>
 		</KeyboardAvoidingView>
 	);
