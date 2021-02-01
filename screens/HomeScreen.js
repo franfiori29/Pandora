@@ -3,11 +3,11 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
 	TouchableOpacity,
 	StyleSheet,
-	Text,
 	View,
 	SafeAreaView,
 	ScrollView,
 	Alert,
+	Platform,
 } from "react-native";
 import { Avatar } from "react-native-elements";
 import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
@@ -18,16 +18,19 @@ const HomeScreen = ({ navigation }) => {
 	const [chats, setChats] = useState("");
 
 	const signOutUser = () => {
-		Alert.alert("You are about to logout", "Are you sure?", [
-			{
-				text: "YES",
-				onPress: () => auth.signOut().then(() => navigation.replace("Login")),
-			},
-			{
-				text: "Cancel",
-				style: "cancel",
-			},
-		]);
+		if (Platform.OS === "web") {
+			if (window.confirm("Are you sure?")) {
+				return auth.signOut().then(() => navigation.replace("Login"));
+			}
+		} else {
+			Alert.alert("You are about to logout", "Are you sure?", [
+				{
+					text: "YES",
+					onPress: () => auth.signOut().then(() => navigation.replace("Login")),
+				},
+				{ text: "Cancel", style: "cancel" },
+			]);
+		}
 	};
 
 	useEffect(() => {
@@ -68,7 +71,7 @@ const HomeScreen = ({ navigation }) => {
 					}}
 				>
 					<View>
-						<TouchableOpacity onPress={signOutUser} activeOpacity={0.5}>
+						<TouchableOpacity activeOpacity={0.5}>
 							<Avatar
 								rounded
 								containerStyle={{
